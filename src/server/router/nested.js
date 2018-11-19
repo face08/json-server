@@ -6,6 +6,7 @@ module.exports = opts => {
   const router = express.Router()
   router.use(delay)
 
+  // 路由扁平化
   // Rewrite URL (/:resource/:id/:nested -> /:nested) and request query
   function get(req, res, next) {
     const prop = pluralize.singular(req.params.resource)

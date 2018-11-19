@@ -6,6 +6,7 @@ const getFullURL = require('./get-full-url')
 const utils = require('../utils')
 const delay = require('./delay')
 
+// 多数处理 arr
 module.exports = (db, name, opts) => {
   // Create router
   const router = express.Router()
@@ -313,11 +314,13 @@ module.exports = (db, name, opts) => {
 
   const w = write(db)
 
+  // 列表路由
   router
     .route('/')
     .get(list)
     .post(create, w)
 
+  // 单项路由
   router
     .route('/:id')
     .get(show)

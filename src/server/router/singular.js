@@ -3,6 +3,7 @@ const write = require('./write')
 const getFullURL = require('./get-full-url')
 const delay = require('./delay')
 
+// 单项处理obj
 module.exports = (db, name) => {
   const router = express.Router()
   router.use(delay)

@@ -8,6 +8,7 @@ const errorhandler = require('errorhandler')
 const objectAssign = require('object-assign')
 const bodyParser = require('./body-parser')
 
+// middlewares 根据配置，添加中间件
 module.exports = function(opts) {
   const userDir = path.join(process.cwd(), 'public')
   const defaultDir = path.join(__dirname, '../../dist')

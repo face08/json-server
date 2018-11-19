@@ -12,9 +12,11 @@ const nested = require('./nested')
 const singular = require('./singular')
 const mixins = require('../mixins')
 
+// 路由入口
 module.exports = (db, opts = { foreignKeySuffix: 'Id' }) => {
   if (typeof db === 'string') {
     db = low(new FileAsync(db))
+    // json数据库默认名称
   } else if (!_.has(db, '__chain__') || !_.has(db, '__wrapped__')) {
     db = low(new Memory()).setState(db)
   }
@@ -52,11 +54,13 @@ module.exports = (db, opts = { foreignKeySuffix: 'Id' }) => {
 
   // Create routes
   db.forEach((value, key) => {
+    // obj处理
     if (_.isPlainObject(value)) {
       router.use(`/${key}`, singular(db, key))
       return
     }
 
+    // 数组处理
     if (_.isArray(value)) {
       router.use(`/${key}`, plural(db, key, opts))
       return
